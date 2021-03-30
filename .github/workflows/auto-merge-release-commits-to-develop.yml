@@ -13,6 +13,7 @@ jobs:
       current_branch: ${{ steps.get_branch_name.outputs.branch_name }}
     steps:
     - id: get_branch_name
+      run: whoami
       run: echo ::set-output name=branch_name::${GITHUB_REF#refs/*/}
   merge_to_develop:
     name: Merge to Develop
@@ -22,6 +23,6 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      - run: git checkout master
+      - run: git checkout develop
       - run: git merge ${{ needs.get_current_branch_name.outputs.current_branch }}
       - run: git push
