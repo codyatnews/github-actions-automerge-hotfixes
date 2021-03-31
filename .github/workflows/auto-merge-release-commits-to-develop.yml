@@ -24,7 +24,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
-        run: |
+      - run: |
           git checkout develop
           git merge ${{ needs.get_current_branch_name.outputs.current_branch }}
           git push
